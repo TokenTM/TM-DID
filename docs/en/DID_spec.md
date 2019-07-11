@@ -11,7 +11,7 @@ The following specifications may change in the future, but they must conform to 
 
 The functionality of this method DID is provided by smart contract in the data repository.
 
-## 1. DID Format
+## Ⅰ. DID Format
 This method uses ```ttm``` as identification. TokenTM DID has the following format:
 
 ```
@@ -27,7 +27,7 @@ did:ttm:0xe32df42865e97135acfb65f3bae71bdc86f4d49150ad6a440b6f15878109880a
 <32 byte hexadecimal string> corresponds to keccak256 and the hash value of Ethereum address connected by random numbers generated in the DID contract.
 
 DID is registered in the contract and controlled by a single Ethereum address, which is set by default to the address where the createDID method was originally called. Then, this address can transfer control to a different address, or update/delete the corresponding DID in the contract.
-## 2. DID Generation
+## Ⅱ. DID Generation
 The identifier string is generated in the following line of the DID contract:
 
 ```
@@ -36,7 +36,7 @@ Bytes32 _hash = keccak256(abi.encodepc (msg.sender, nonce));
 
 Where nonce increases in each call, so that the result is considered to be random, the address is able to create and control multiple DID.
 
-## 3. Definition of DID Structure 
+## Ⅲ. Definition of DID Structure 
 Each DID entry in the ledger shows the following structure:
 ```
 Struct DID {
@@ -49,7 +49,7 @@ Struct DID {
 
 When DID Deactivate revoked shown as true.
 
-## 4. DID Operation
+## Ⅳ. DID Operation
 The following sections define the operations supported by managing DID.
 ### 1. Create
 DID creation is completed by a transaction that invokes the following method through the TM_DID contract submission:
@@ -83,7 +83,7 @@ RevokeDID (address didAddress)
 ```
 set revoked to true.
 
-## 5. Agent
+### 5. Agent
 #### Determine if the agent is valid
 
 ```
@@ -99,7 +99,7 @@ AddDelegate (address didAddress, bytes32 delegateType, address delegate, uint va
 RevokeDelegate (address didAddress, bytes32 delegateType, address delegate)
 ```
 
-## 5. Extention
+## Ⅴ. Extention
 The DID ledger is implemented as a simple layer of persistent identity registration on the Ethereum blockchain network. Meanwhile it can be extended to contain other data and functions. Scalability is achieved by using an identity contract as a controller for DID on the ledger. In particular, ERC725 combined with private key management contract, for example, ERC734 is expected to involve additional features with common conditions (such as defines service endpoint, private key rotation, delegation and licensing, etc.). At the meantime, it gives the permit of exploiting other standards, and even allows the owner of DID to transforms contract implementation to another without losing its identifier.
 ### 1. Security Considerations
 The following points should be taken into consideration and the community should discuss these general security issues:
