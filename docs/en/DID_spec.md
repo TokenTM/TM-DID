@@ -66,7 +66,11 @@ The records of DID are read by a transaction that invokes the following method t
 getDID(address didAddress) public view returns(address, uint256, uint256, bool)
 ```
 
-Return owner, creation time, update time, delete or not
+The return values need to be formatted as follows json strings:
+```
+{
+}
+```
 ### Update
 By calling 
 ```
