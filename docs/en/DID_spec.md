@@ -69,6 +69,21 @@ getDID(address didAddress) public view returns(address, uint256, uint256, bool)
 The return values need to be formatted as follows json strings:
 ```
 {
+  '@context': 'https://w3id.org/did/v1',
+  id: 'did:ttm:<32 byte hexadecimal string>',
+  contract: {
+      version: <contract current version>,
+	  contractAddress: <contract deploy address>,
+      createTx: <contract create tx>
+  },
+  publicKey: [{
+   	id: 'did:ttm:<32 byte hexadecimal string>',
+   	type: 'Secp256k1',
+   	owner: 'did:ttm:<32 byte hexadecimal string>',
+   	address: '<pulicKey associated  ethereum address>'}],
+  createTime: <create timestamp>,
+  updateTime: <update timestamp>,
+  revoked: <revoked flag>
 }
 ```
 ### Update
