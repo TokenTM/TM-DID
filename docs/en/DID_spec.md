@@ -73,8 +73,8 @@ The return values need to be formatted as follows json strings:
   id: 'did:ttm:<32 byte hexadecimal string>',
   contract: {
       version: <contract current version>,
-	  contractAddress: <contract deploy address>,
-      createTx: <contract create tx>
+      contractAddress: <contract deploy address>,
+      createTx: <contract create tx hash>
   },
   publicKey: [{
    	id: 'did:ttm:<32 byte hexadecimal string>',
@@ -85,6 +85,27 @@ The return values need to be formatted as follows json strings:
   updateTime: <update timestamp>,
   revoked: <revoked flag>
 }
+```
+Example
+```
+{
+  '@context': 'https://w3id.org/did/v1',
+  id: 'did:ttm:0xe32df42865e97135acfb65f3bae71bdc86f4d49150ad6a440b6f15878109880a',
+  contract: {
+      version: 1.0.0,
+	  contractAddress: '0x33e7312b25d4Cb9fc9A3db5FCF2027Cb2439329f',
+      createTx: '0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421'
+  },
+  publicKey: [{
+   	id: 'did:ttm:0x7810f46ff57c7073f756814f39f8ee3f3f11b872b18258f5d78cfd9a08b1b467',
+   	type: 'Secp256k1',
+   	owner: 'did:ttm:0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421',
+   	address: '0x8e90e120aaffabdbcf4a4c1d82665860e303ba99'}],
+  createTime: 1559371982,
+  updateTime: 1559371982,
+  revoked: false
+}
+
 ```
 ### Update
 By calling 
