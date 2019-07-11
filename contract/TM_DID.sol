@@ -39,6 +39,7 @@ contract TM_DID {
 
 
     function getDID(address didAddress) public view returns(address, uint256, uint256, bool) {
+        require(msg.sender == dids[didAddress].owner);
         return (dids[didAddress].owner, dids[didAddress].created, dids[didAddress].updated, dids[didAddress].revoked);
     }
     
