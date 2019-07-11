@@ -107,6 +107,10 @@ Example
 }
 
 ```
+The transaction calling this method must have the authority to control the did, with the following constraints code line:
+```
+require(msg.sender == dids[didAddress].owner);
+```
 ### Update
 By calling 
 ```
