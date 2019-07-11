@@ -107,10 +107,6 @@ Example
 }
 
 ```
-The transaction calling this method must have the authority to control the did, with the following constraints code line:
-```
-require(msg.sender == dids[didAddress].owner);
-```
 ### Update
 By calling 
 ```
@@ -120,7 +116,10 @@ to update attributes of DID.
 ```
 RevokeAttribute (address didAddress, bytes32 name, bytes memory value)
 ```
-to revoke attrubute.
+to revoke attrubute.But the transaction calling this method must have the authority to control the did, with the following constraints code line:
+```
+require(msg.sender == dids[didAddress].owner);
+```
 ### Delete
 ```
 RevokeDID (address didAddress)
