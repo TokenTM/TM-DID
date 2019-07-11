@@ -1,7 +1,7 @@
 
 Method Name| Status | DLT or Network | Authors | Link
 ---|---|---|---|---
-did:tm: | PROVISIONAL | TMChain | Token.TM | [TM DID Method](https://github.com/TokenTM/TM-DID)
+did:ttm: | PROVISIONAL | TMChain | Token.TM | [TokenTM DID Method](https://github.com/TokenTM/TM-DID)
 
 
 ## TokenTM DID Method
@@ -12,16 +12,16 @@ The following specifications may change in the future, but they must conform to 
 The functionality of this method DID is provided by smart contract in the data repository.
 
 ### DID Format
-This method uses TM as identification. TM DID has the following format:
+This method uses ```ttm``` as identification. TokenTM DID has the following format:
 
 ```
-did:tm:<32 byte hexadecimal string>
+did:ttm:<32 byte hexadecimal string>
 ```
 
 For example:
 
 ```
-did: tm: 0xe32df42865e97135acfb65f3bae71bdc86f4d49150ad6a440b6f15878109880a
+did:ttm:0xe32df42865e97135acfb65f3bae71bdc86f4d49150ad6a440b6f15878109880a
 ```
 
 <32 byte hexadecimal string> corresponds to keccak256 and the hash value of Ethereum address connected by random numbers generated in the DID contract.
@@ -60,7 +60,7 @@ createDID ()
 
 Record msg.sender of DID as owner, record creation time, revoked set to true.
 
-#### Read/Verify
+#### Read
 The records of DID are read by a transaction that invokes the following method through the TM_DID contract submission:
 ```
 getDID(address didAddress) public view returns(address, uint256, uint256, bool)
