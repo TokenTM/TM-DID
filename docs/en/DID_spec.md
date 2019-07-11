@@ -108,6 +108,7 @@ The following points should be taken into consideration and the community should
 - Once controller address transfers the control of DID to a new address, it loses all ability to execute operations on the DID. Therefore, you must be careful to do this to avoid errors (transferring DID control to a wrong address or out of user control address).
 - This method does not define delegation or recovery mechanisms at ledger level. Applicable recoverability must be implemented through private key management and proxy identity smart contracts (such as ERC725 / ERC734). This is expected to become a common practice for managing DID under this method.
 ### Privacy Considerations
+With the help of the anonymity of ethereum address, the anonymity of DID is guaranteed (because DID is controlled by the private key corresponding to the address). Since it will not store any data of the user on the block chain ledger, then DID documents cannot do reverse information calculation and comprehensive information analysis to contact someone in the real world.
 ### Supplemental explanation
 Other approaches have been proposed to provide decentralized identities on Ethereum platforms. However, the TokenTM DID method is based on the following principles:
 - Ideally, DID should be "timestamped" and revocable. General Ethereum addresses do not meet this requirement.
