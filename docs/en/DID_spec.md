@@ -49,7 +49,7 @@ Struct DID {
 
 When DID Deactivate revoked shown as true.
 
-## 4. DID Operation
+## 4. CRUD Operations
 The following sections define the operations supported by managing DID.
 ### Create
 DID creation is completed by a transaction that invokes the following method through the TM_DID contract submission:
