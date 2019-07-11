@@ -99,7 +99,7 @@ AddDelegate (address didAddress, bytes32 delegateType, address delegate, uint va
 RevokeDelegate (address didAddress, bytes32 delegateType, address delegate)
 ```
 
-## 5. Extention
+## 5. Extentions
 The DID ledger is implemented as a simple layer of persistent identity registration on the Ethereum blockchain network. Meanwhile it can be extended to contain other data and functions. Scalability is achieved by using an identity contract as a controller for DID on the ledger. In particular, ERC725 combined with private key management contract, for example, ERC734 is expected to involve additional features with common conditions (such as defines service endpoint, private key rotation, delegation and licensing, etc.). At the meantime, it gives the permit of exploiting other standards, and even allows the owner of DID to transforms contract implementation to another without losing its identifier.
 ### Security Considerations
 The following points should be taken into consideration and the community should discuss these general security issues:
