@@ -121,6 +121,7 @@ to revoke attrubute.But the transaction calling this method must have the author
 require(msg.sender == dids[didAddress].owner);
 ```
 ### Delete
+Delete method real implementation is "logical deletion" , by modifying the revoked flag to true, did document still can returned by the read method, the only difference is that it is invalid.
 ```
 RevokeDID (address didAddress)
 ```
