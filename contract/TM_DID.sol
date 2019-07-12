@@ -16,7 +16,7 @@ contract TM_DID {
 
     event CreatedDID(address didAddress);
     
-    //Register a DID in the ledger
+    /// Register a DID on the ledger
     function createDID() public
     {
         dids[msg.sender].owner = msg.sender;
@@ -31,6 +31,7 @@ contract TM_DID {
 
     event DIDOwnerChanged (address indexed identity, address owner, uint previousChange);
     
+    /// Change DID owner
     function changeDIDOwner(address didAddress, address newOwner) public {
         require(dids[didAddress].owner == msg.sender);
         dids[didAddress].updated = now;
@@ -38,19 +39,19 @@ contract TM_DID {
         blockNumOfUpdate[didAddress] = block.number;
     }
 
-
+    /// Look up DID on the ledger
     function getDID(address didAddress) public view returns(address, uint256, uint256, bool) {
         return (dids[didAddress].owner, dids[didAddress].created, dids[didAddress].updated, dids[didAddress].revoked);
     }
     
-    
+    /// Modify the validity of DID
     function revokeDID(address didAddress) public {
         require(msg.sender == dids[didAddress].owner);
         dids[didAddress].updated = now;
         dids[didAddress].revoked = true;
     }
     
-   
+    /// Get the validity of DID
     function validDelegate(address didAddress, bytes32 delegateType, address delegate) public view returns(bool) {
         uint validity = delegatesOfDid[didAddress][keccak256(abi.encodePacked(delegateType))][delegate];
         return (validity > now);
@@ -58,12 +59,14 @@ contract TM_DID {
     
     event DIDDelegateChanged (address indexed didAddress, bytes32 delegateType, address delegate, uint validTo, uint previousChange);
 
+    /// Add an agent for DID
     function addDelegate(address didAddress, bytes32 delegateType, address delegate, uint validity) public {
         delegatesOfDid[didAddress][keccak256(abi.encodePacked(delegateType))][delegate] = now + validity;
         emit DIDDelegateChanged(didAddress, delegateType, delegate, now + validity, blockNumOfUpdate[didAddress]);
         blockNumOfUpdate[didAddress] = block.number;
     }
 
+   /// Modify the validity of agent
     function revokeDelegate(address didAddress, bytes32 delegateType, address delegate) public {
         delegatesOfDid[didAddress][keccak256(abi.encodePacked(delegateType))][delegate] = now;
         emit DIDDelegateChanged(didAddress, delegateType, delegate, now, blockNumOfUpdate[didAddress]);
@@ -73,12 +76,14 @@ contract TM_DID {
 
     event DIDAttributeChanged ( address indexed didAddress, bytes32 name, bytes value, uint validTo, uint previousChange);
 
+    /// Set DID's attribute information
     function setAttribute(address didAddress, bytes32 name, bytes memory value, uint validity) public {
         require(msg.sender == dids[didAddress].owner);
         emit DIDAttributeChanged(didAddress, name, value, now + validity, blockNumOfUpdate[didAddress]);
         blockNumOfUpdate[didAddress] = block.number;
     }
-
+    
+    /// Modify the validity of DID's attribute information
     function revokeAttribute(address didAddress, bytes32 name, bytes memory value) public {
         require(msg.sender == dids[didAddress].owner);
         emit DIDAttributeChanged(didAddress, name, value, 0, blockNumOfUpdate[didAddress]);
