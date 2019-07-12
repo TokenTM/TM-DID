@@ -16,6 +16,7 @@ contract TM_DID {
 
     event CreatedDID(address didAddress);
     
+    //Register a DID in the ledger
     function createDID() public
     {
         dids[msg.sender].owner = msg.sender;
